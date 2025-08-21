@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# 🧀 Queijo Mais - Marketplace de Queijos Artesanais
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Um marketplace moderno para conectar consumidores aos melhores produtores de queijos artesanais, com integração direta ao WhatsApp para facilitar os pedidos.
 
-## Available Scripts
+## 🚀 Funcionalidades
 
-In the project directory, you can run:
+- ✅ **Catálogo de Fornecedores**: Navegue entre diferentes produtores locais
+- ✅ **Carrinho Inteligente**: Adicione produtos de diferentes fornecedores
+- ✅ **Integração WhatsApp**: Envie pedidos diretamente ao fornecedor
+- ✅ **Interface Responsiva**: Funciona perfeitamente em mobile e desktop
+- ✅ **Gestão de Endereços**: Sistema completo de entrega
 
-### `npm start`
+## 🛠️ Tecnologias Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React 18, React Router DOM
+- **Gerenciamento de Estado**: React Context API
+- **Estilização**: CSS3 com variáveis customizadas
+- **Integração**: WhatsApp Business API
+- **Ferramentas**: Create React App, ESLint, Prettier
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Estrutura do Projeto
 
-### `npm test`
+```
+src/
+├── components/           # Componentes reutilizáveis
+│   ├── comum/           # Componentes compartilhados
+│   ├── fornecedor/      # Componentes de fornecedor
+│   ├── produto/         # Componentes de produto
+│   ├── carrinho/        # Componentes do carrinho
+│   └── checkout/        # Componentes de finalização
+├── pages/               # Páginas da aplicação
+├── context/             # Contexts para gerenciamento de estado
+├── hooks/               # Custom hooks
+├── services/            # Serviços e APIs
+├── utils/               # Funções utilitárias
+├── styles/              # Arquivos CSS organizados
+└── assets/              # Imagens, ícones e recursos
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🏃‍♂️ Como Executar
 
-### `npm run build`
+### Pré-requisitos
+- Node.js 16+ instalado
+- npm ou yarn
+- Git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Instalação
+```bash
+# 1. Clone o repositório
+git clone https://github.com/alexandmag/queijo-mais.git
+cd queijo-mais
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 2. Instale as dependências
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 3. Configure as variáveis de ambiente
+cp .env.example .env
+# Edite o arquivo .env com suas configurações
 
-### `npm run eject`
+# 4. Execute o projeto
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+O projeto estará disponível em `http://localhost:3000`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔧 Scripts Disponíveis
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `npm start` - Executa o projeto em modo desenvolvimento
+- `npm run build` - Gera build de produção
+- `npm test` - Executa os testes
+- `npm run lint` - Verifica problemas de código
+- `npm run format` - Formata o código automaticamente
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📱 Como Funciona
 
-## Learn More
+1. **Seleção de Fornecedor**: O usuário escolhe entre os fornecedores disponíveis
+2. **Escolha de Produtos**: Adiciona os queijos desejados ao carrinho
+3. **Informações de Entrega**: Preenche o endereço de entrega
+4. **Envio via WhatsApp**: O pedido é formatado e enviado ao fornecedor
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎨 Customização de Estilos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+O projeto utiliza variáveis CSS para facilitar a customização:
 
-### Code Splitting
+```css
+/* src/styles/variables.css */
+:root {
+  --cor-primaria: #ffa500;
+  --cor-secundaria: #ff8c00;
+  --cor-sucesso: #28a745;
+  --fonte-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📦 Deploy
 
-### Analyzing the Bundle Size
+### Netlify
+```bash
+npm run build
+# Faça upload da pasta build/ no Netlify
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Vercel
+```bash
+npm run build
+vercel --prod
+```
 
-### Making a Progressive Web App
+## 🤝 Contribuindo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
-### Advanced Configuration
+## 📄 Licença
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-### Deployment
+## 📧 Contato
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Alexandre Magno - [@alexandmag](https://www.linkedin.com/in/alexandmag/) - alexandmagarapro@gmail.com
 
-### `npm run build` fails to minify
+Link do Projeto: [https://github.com/alexandmag/queijo-mais](https://github.com/alexandmag/queijo-mais)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+⭐ **Feito com ❤️ para conectar produtores e consumidores de queijos artesanais**
