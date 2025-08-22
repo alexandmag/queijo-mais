@@ -1,3 +1,3 @@
-export { default as FormularioEndereco } from './checkout/FormularioEndereco';
-export { default as ResumoFinal } from './checkout/ResumoFinal';
-export { default as BotaoWhatsApp } from './checkout/BotaoWhatsApp';
+export { default as FormularioEndereco } from './FormularioEndereco';
+export { default as ResumoFinal } from './ResumoFinal';
+export { default as BotaoWhatsApp } from './BotaoWhatsApp';

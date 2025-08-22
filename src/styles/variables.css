@@ -1,0 +1,56 @@
+:root {
+    /* Cores principais */
+    --cor-primaria: #ffa500;
+    --cor-secundaria: #ff8c00;
+    --cor-sucesso: #28a745;
+    --cor-erro: #dc3545;
+    --cor-aviso: #ffc107;
+    --cor-info: #17a2b8;
+
+    /* Cores neutras */
+    --cor-branco: #ffffff;
+    --cor-cinza-claro: #f8f9fa;
+    --cor-cinza-medio: #6c757d;
+    --cor-cinza-escuro: #343a40;
+    --cor-preto: #000000;
+
+    /* Tipografia */
+    --fonte-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    --fonte-tamanho-base: 16px;
+    --fonte-peso-normal: 400;
+    --fonte-peso-bold: 600;
+    --linha-altura: 1.6;
+
+    /* Espaçamentos */
+    --espaco-xs: 0.25rem;
+    --espaco-sm: 0.5rem;
+    --espaco-md: 1rem;
+    --espaco-lg: 1.5rem;
+    --espaco-xl: 2rem;
+    --espaco-xxl: 3rem;
+
+    /* Bordas e sombras */
+    --border-radius: 8px;
+    --border-radius-sm: 4px;
+    --border-radius-lg: 12px;
+    --sombra-leve: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --sombra-forte: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    /* Breakpoints */
+    --mobile: 576px;
+    --tablet: 768px;
+    --desktop: 992px;
+    --desktop-large: 1200px;
+
+    /* Transições */
+    --transicao-rapida: 0.2s ease;
+    --transicao-normal: 0.3s ease;
+    --transicao-lenta: 0.5s ease;
+
+    /* Z-index */
+    --z-modal: 1000;
+    --z-dropdown: 100;
+    --z-header: 50;
+    --z-overlay: 999;
+}

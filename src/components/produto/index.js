@@ -1,4 +1,4 @@
-export { default as CartaoProduto } from './produto/CartaoProduto';
-export { default as ListaProdutos } from './produto/ListaProdutos';
-export { default as FiltrosProdutos } from './produto/FiltrosProdutos';
-export { default as DetalheProduto } from './produto/DetalheProduto';
+export { default as CartaoProduto } from './CartaoProduto';
+export { default as ListaProdutos } from './ListaProdutos';
+export { default as FiltrosProdutos } from './FiltrosProdutos';
+export { default as DetalheProduto } from './DetalheProduto';

@@ -1,95 +1,100 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { useCarrinho } from '../context/CarrinhoContext';
+import { obterFornecedores, obterProdutosPorFornecedor } from '../utils/dadosMock';
+import CartaoProduto from '../components/produto/CartaoProduto';
 
-function PaginaCarrinho() {
-    const {
-        itens,
-        calcularTotal,
-        calcularQuantidadeTotal,
-        removerItem,
-        atualizarQuantidade,
-        limparCarrinho
-    } = useCarrinho();
+function PaginaProdutos() {
+    const [fornecedores, setFornecedores] = useState([]);
+    const [fornecedorSelecionado, setFornecedorSelecionado] = useState(null);
+    const [produtos, setProdutos] = useState([]);
+    const [carregando, setCarregando] = useState(true);
+    const { adicionarItem } = useCarrinho();
 
-    if (itens.length === 0) {
+    useEffect(() => {
+        // Carregar fornecedores
+        const dadosFornecedores = obterFornecedores();
+        setFornecedores(dadosFornecedores);
+        
+        // Selecionar primeiro fornecedor por padrão
+        if (dadosFornecedores.length > 0) {
+            selecionarFornecedor(dadosFornecedores[0]);
+        }
+        
+        setCarregando(false);
+    }, []);
+
+    const selecionarFornecedor = (fornecedor) => {
+        setFornecedorSelecionado(fornecedor);
+        const produtosFornecedor = obterProdutosPorFornecedor(fornecedor.id);
+        setProdutos(produtosFornecedor);
+    };
+
+    const adicionarProdutoAoCarrinho = (produto) => {
+        if (fornecedorSelecionado) {
+            adicionarItem(produto, fornecedorSelecionado, 1);
+            alert('Produto adicionado ao carrinho!');
+        }
+    };
+
+    if (carregando) {
         return (
-            <div className="pagina-carrinho">
-                <div className="container">
-                    <h1>Seu Carrinho</h1>
-                    <div className="carrinho-vazio">
-                        <p>Seu carrinho está vazio</p>
-                        <Link to="/produtos" className="btn-primary">
-                            Ver Produtos
-                        </Link>
-                    </div>
-                </div>
+            <div className="container">
+                <p>Carregando...</p>
             </div>
         );
     }
 
     return (
-        <div className="pagina-carrinho">
+        <div className="pagina-produtos">
             <div className="container">
-                <h1>Seu Carrinho ({calcularQuantidadeTotal()} itens)</h1>
-
-                <div className="conteudo-carrinho">
-                    <div className="itens-carrinho">
-                        {itens.map((item, index) => (
-                            <div key={`${item.id}-${item.fornecedorId}`} className="item-carrinho">
-                                <img src={item.imagem} alt={item.nome} />
-                                <div className="info-item">
-                                    <h3>{item.nome}</h3>
-                                    <p className="fornecedor">De: {item.nomeFornecedor}</p>
-                                    <p className="preco">R$ {item.preco.toFixed(2)} cada</p>
+                <h1>Nossos Fornecedores</h1>
+                
+                <section className="fornecedores-disponiveis">
+                    <h2>Escolha um fornecedor:</h2>
+                    <div className="grid-fornecedores">
+                        {fornecedores.map(fornecedor => (
+                            <div
+                                key={fornecedor.id}
+                                className={`cartao-fornecedor ${
+                                    fornecedorSelecionado?.id === fornecedor.id ? 'selecionado' : ''
+                                }`}
+                                onClick={() => selecionarFornecedor(fornecedor)}
+                            >
+                                <h3>{fornecedor.nome}</h3>
+                                <p>{fornecedor.descricao}</p>
+                                <div className="info-fornecedor">
+                                    <span>📍 {fornecedor.localizacao}</span>
+                                    <span>⭐ {fornecedor.avaliacao}</span>
                                 </div>
-                                <div className="controles-quantidade">
-                                    <button
-                                        onClick={() => atualizarQuantidade(item.id, item.fornecedorId, item.quantidade - 1)}
-                                    >
-                                        -
-                                    </button>
-                                    <span>{item.quantidade}</span>
-                                    <button
-                                        onClick={() => atualizarQuantidade(item.id, item.fornecedorId, item.quantidade + 1)}
-                                    >
-                                        +
-                                    </button>
+                                <div className="especialidades">
+                                    {fornecedor.especialidades.map(esp => (
+                                        <span key={esp} className="tag-especialidade">
+                                            {esp}
+                                        </span>
+                                    ))}
                                 </div>
-                                <div className="subtotal">
-                                    R$ {(item.preco * item.quantidade).toFixed(2)}
-                                </div>
-                                <button
-                                    className="btn-remover"
-                                    onClick={() => removerItem(item.id, item.fornecedorId)}
-                                >
-                                    Remover
-                                </button>
                             </div>
                         ))}
                     </div>
+                </section>
 
-                    <div className="resumo-carrinho">
-                        <h3>Resumo do Pedido</h3>
-                        <div className="linha-total">
-                            <strong>Total: R$ {calcularTotal().toFixed(2)}</strong>
+                {fornecedorSelecionado && (
+                    <section className="produtos-disponveis">
+                        <h2>Produtos de {fornecedorSelecionado.nome}</h2>
+                        <div className="grid-produtos">
+                            {produtos.map(produto => (
+                                <CartaoProduto
+                                    key={produto.id}
+                                    produto={produto}
+                                    aoAdicionar={() => adicionarProdutoAoCarrinho(produto)}
+                                />
+                            ))}
                         </div>
-                        <div className="acoes-carrinho">
-                            <button
-                                className="btn-limpar"
-                                onClick={limparCarrinho}
-                            >
-                                Limpar Carrinho
-                            </button>
-                            <Link to="/checkout" className="btn-primary">
-                                Finalizar Pedido
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                    </section>
+                )}
             </div>
         </div>
     );
 }
 
-export default PaginaCarrinho;
+export default PaginaProdutos;
